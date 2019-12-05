@@ -7,37 +7,57 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+
+  final _formKey = GlobalKey<FormState>();
+  String _email;
+  String _password;
+
 @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ingresa tus datos para continuar ..."),
+        title: Text("Login Simple con 'Firebase'"),
       ),
       body: Container(
         padding: EdgeInsets.all(25.00),
+        child: Form(
+        key: _formKey,
         child: Column(
           children: <Widget>[
+            SizedBox(height: 25.00),
             Text(
               'Ingresa tus datos'
             ),
+            SizedBox(height: 25.00),
             TextFormField(
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
+                onSaved: (value) => _email = value,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
                 labelText: 'Correo'
               )
             ),
+            SizedBox(height: 25.00),
             TextFormField(
+              onSaved: (value) => _password = value,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
                 labelText: 'Contraseña'
-              )
+              ),
+              obscureText: true,
             ),
+            SizedBox(height: 25.00),
             RaisedButton(
                 child: Text('Ingresa'),
-                onPressed: (){print("HAHAAA");})
+                onPressed: () {
+                  final form = _formKey.currentState;
+                  form.save();//salva sus valores para usarlos localmente
+                  if (form.validate()) {
+                  print("$_email $_password");//uso local de valores
+                }},
+            )
           ],
         ),
+      )
       ),
     );
   }
