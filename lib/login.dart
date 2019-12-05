@@ -12,10 +12,32 @@ class _LoginState extends State<Login> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text("Ingresa"),
+        title: Text("Ingresa tus datos para continuar ..."),
       ),
-      body: Center(
-        child: Text("Contenido"),
+      body: Container(
+        padding: EdgeInsets.all(25.00),
+        child: Column(
+          children: <Widget>[
+            Text(
+              'Ingresa tus datos'
+            ),
+            TextFormField(
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(
+                labelText: 'Correo'
+              )
+            ),
+            TextFormField(
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(
+                labelText: 'Contraseña'
+              )
+            ),
+            RaisedButton(
+                child: Text('Ingresa'),
+                onPressed: (){print("HAHAAA");})
+          ],
+        ),
       ),
     );
   }
